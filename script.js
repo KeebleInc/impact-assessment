@@ -1,22 +1,21 @@
-// Function to make API request
-function sendApiRequest() {
-  const gtmData = window.dataLayer[0];
+// Send GET API request with query string parameters
+function sendAPIRequest() {
+    var queryStringParams = getQueryStringParams();
 
-  if (gtmData) {
-    const apiUrl = `https://httpbin.org/get?key=${gtmData.key}&value=${gtmData.value}`;
+    // Build API URL with query string parameters
+    var apiUrl = "https://httpbin.org/get";
 
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        console.log('API Response:', data);
-      })
-      .catch(error => {
-        console.error('API Error:', error);
-      });
-  } else {
-    console.error('No data in GTM data layer.');
-  }
+    Object.keys(queryStringParams).forEach(function(key) {
+        apiUrl += "?" + key + "=" + queryStringParams[key];
+    });
+
+   // Make the API request using fetch()
+   fetch(apiUrl)
+       .then(response => response.json())
+       .then(data => console.log(data));
 }
 
-// Event listener for the button click
-document.getElementById('apiButton').addEventListener('click', sendApiRequest);
+// Event listener for button click
+document.getElementById("apiButton").addEventListener("click", function() {
+    sendAPIRequest();
+});
