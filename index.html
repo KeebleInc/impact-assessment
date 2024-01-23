@@ -1,59 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Google Tag Manager -->
-            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-PG98WLVP');</script>
-    <!-- End Google Tag Manager -->
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Challenge</title>
-    <!-- other head elements -->
-    <link rel="stylesheet" href="web.css">
-    <script src="java.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Tag Manager and API Implementation</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PG98WLVP"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    
-    <header>
-        <h1>Technical Challenge Overview</h1>
-        <p>The technical challenge comes in two parts - hands-on exercise(s) which you will complete within 48 hours of receiving this test, then an in-person session to walk through your submission. The purpose of this technical challenge is to assess your level of technical ability, approach to problem solving and troubleshooting, and your ability to describe your solution to an audience. While you may reference external sources as needed (don’t forget to quote), submission of this work should reflect your own best independent effort. Good luck!</p>
-    </header>
+  <div class="container">
+    <h1>Google Tag Manager and API Implementation</h1>
+    <button id="apiButton">Send API Request</button>
+  </div>
+  
+  <!-- Google Tag Manager script -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','YOUR-GTM-ID');</script>
+  
+  <!-- GTM Data Layer script -->
+  <script>
+    // Function to push key-value pair to GTM data layer
+    function pushToDataLayer(key, value) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'customEvent',
+        'key': key,
+        'value': value
+      });
+    }
 
-    <section>
-        <h2>1. Google Tag Manager</h2>
-        <p>Implement Google Tag Manager on your website site. If you do not have a website, create a test page/website using any hosting option you prefer - free sites can be created using <a href="https://pages.github.com/" target="_blank">https://pages.github.com/</a> with a free Github account, or sites such as Zeit or Surge. Load your website with the following query string parameter: <code>?key=hello&value=world</code></p>
-        <p>e.g. <code>https://mysite.com?key=hello&value=world</code></p>
-        <p>Add functionality to push the key value pair to the GTM data layer. Also, ensure that these values are not hardcoded, allowing testing of other key value pairs.</p>
-        <a href="https://keebleinc.github.io/impact-assessment/?key=hello&value=world">Click Here To Test The Google Tag</a>
+    // Get query parameters from URL and push to GTM data layer
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.forEach((value, key) => {
+      pushToDataLayer(key, value);
+    });
+  </script>
 
-    </section>
-
-    <section>
-        <h2>2. API Implementation</h2>
-        <p>Add a button to your page that sends a GET API request using <a href="http://httpbin.org/" target="_blank">http://httpbin.org/</a>. The API call should use the query string parameters stored in the GTM data layer (from task 1) as key-value pairs sent to the GET request.</p>
-        <p>e.g. <code>https://httpbin.org/get?key=hello&value=world</code></p>
-        <p>Log the response in the console.</p>
-    </section>
-
-    <section>
-        <h2>3. User Flow Diagram</h2>
-        <p>When a user clicks on an impact.com Advertiser’s advert on a Publisher’s website, the user is redirected via impact.com’s tracking servers (where impact.com records a click for that Publisher) before landing on the Advertisers website. The user then navigates to the website and purchases a product. This purchase event is tracked by impact.com’s Javascript on the Advertiser’s website (making another request to impact.com’s tracking servers). This happens in a single browser session linking the Publisher’s click to the purchase on the Advertiser website. Please describe the above in a user flow diagram.</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Your Website. All rights reserved.</p>
-    </footer>
-
+  <!-- API Request script -->
+  <script src="script.js"></script>
 </body>
-
 </html>
