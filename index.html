@@ -1,47 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Tag Manager and API Implementation</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GTM-PG98WLVP');
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      for (const [key, value] of urlParams.entries()) {
+        window.dataLayer.push({'key': key, 'value': value});
+      }
+    }
+  </script>
 </head>
 
 <body>
-
-  <button id="apiButton">Send API Request</button>
-  
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PG98WLVP');</script>
-  <!-- End Google Tag Manager -->
-
+  Hello world
+  <button onclick="sendGetRequest()">Send API Request</button>
+  <script src="script.js"></script>
+  <script src="https://www.googletagmanager.com/gtag/js?id=GTM-PG98WLVP" async></script>
   <script>
-    // Get query string parameters from URL
-    function getQueryStringParams() {
-        var params = {};
-        
-        window.location.search.substr(1).split("&").forEach(function(item) {
-            var keyValue = item.split("=");
-            params[keyValue[0]] = decodeURIComponent(keyValue[1]);
-        });
-        
-        return params;
+    function sendGetRequest() {
+      const gtmData = window.dataLayer[0];
+      const queryString = Object.keys(gtmData).map(key => key + '=' + gtmData[key]).join('&');
+      fetch('https://httpbin.org/get?' + queryString)
+      .then(response => response.json())
+      .then(data => console.log(data));
     }
-    
-    // Push key-value pairs to GTM data layer
-    function pushToDataLayer(params) {
-        dataLayer.push(params);
-    }
-    
-    // Initialize Google Tag Manager
-    window.dataLayer = window.dataLayer || [];
-    pushToDataLayer(getQueryStringParams());
-</script>
-  
-  
+  </script>
+
+  <!--
+  This script places a badge on your repl's full-browser view back to your repl's cover
+  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
+  teal, blue, blurple, magenta, pink!
+  -->
+  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
 </body>
-</html>
+
