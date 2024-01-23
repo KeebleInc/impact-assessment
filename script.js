@@ -1,21 +1,19 @@
-// Send GET API request with query string parameters
-function sendAPIRequest() {
-    var queryStringParams = getQueryStringParams();
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GTM-PG98WLVP');
 
-    // Build API URL with query string parameters
-    var apiUrl = "https://httpbin.org/get";
-
-    Object.keys(queryStringParams).forEach(function(key) {
-        apiUrl += "?" + key + "=" + queryStringParams[key];
-    });
-
-   // Make the API request using fetch()
-   fetch(apiUrl)
-       .then(response => response.json())
-       .then(data => console.log(data));
+window.onload = function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  for (const [key, value] of urlParams.entries()) {
+    window.dataLayer.push({'key': key, 'value': value});
+  }
 }
 
-// Event listener for button click
-document.getElementById("apiButton").addEventListener("click", function() {
-    sendAPIRequest();
-});
+function sendGetRequest() {
+  const gtmData = window.dataLayer[0];
+  const queryString = Object.keys(gtmData).map(key => key + '=' + gtmData[key]).join('&');
+  fetch('https://httpbin.org/get?' + queryString)
+  .then(response => response.json())
+  .then(data => console.log(data));
+}
