@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -41,11 +40,8 @@
                 opacity:0.5;
               }
                   </style>
-                  <style>
-            
                 
 </head>
-
 <body>
  
   <!-- Google Tag Manager (noscript) -->
@@ -56,24 +52,24 @@
   <div class="container">
     <header>
       <h1>Technical Challenge Overview</h1>
+      <p>The technical challenge comes in two parts - hands-on exercise(s) which you will complete within 48 hours of receiving this test, then an in-person session to walk through your submission. The purpose of this technical challenge is to assess your level of technical ability, approach to problem solving and troubleshooting, and your ability to describe your solution to an audience. While you may reference external sources as needed (don’t forget to quote), submission of this work should reflect your own best independent effort. Good luck!</p>
     </header>
-
     <section>
       <h2>1. Google Tag Manager</h2>
-      <h3>Objective</h3>
-      <p>Implement a GTM on your website site. Add functionality to push the key value pair to the GTM data layer and also ensure that these values are not hardcoded, allowing testing of other key value pairs.</p>
+      <p>Implement Google Tag Manager on your website site. If you do not have a website, create a test page/website using any hosting option you prefer - free sites can be created using <a href="https://pages.github.com/" target="_blank">https://pages.github.com/</a> with a free Github account, or sites such as Zeit or Surge. Load your website with the following query string parameter: <code>?key=hello&value=world</code></p>
+      <p>e.g. <code>https://mysite.com?key=hello&value=world</code></p>
+      <p>Add functionality to push the key value pair to the GTM data layer. Also, ensure that these values are not hardcoded, allowing testing of other key value pairs.</p>
       <a class="myButton" href="https://keebleinc.github.io/impact-assessment/?key=hello&value=world">Click Me To Test The GTM</a>
       <a class="myButton" href="https://keebleinc.github.io/impact-assessment/?key=impact&value=assessment">Click Me To Test Another Key Value Pair</a>
     </section>
 
     <section>
       <h2>2. API Implementation</h2>
-      <h3>Objective</h3>
       <p>Add a button to your page that sends a GET API request using <a href="http://httpbin.org/" target="_blank">http://httpbin.org/</a>. The API call should use the query string parameters stored in the GTM data layer (from task 1) as key-value pairs sent to the GET request.</p>
+      <p>e.g. <code>https://httpbin.org/get?key=hello&value=world</code></p>
       <p>Log the response in the console.</p>
     </section>
-
-    <button>onclick="sendGetRequest()">Send API Request</button>
+    <button onclick="sendGetRequest()">Send API Request</button>
     <script src="script.js"></script>
     <script src="https://www.googletagmanager.com/gtag/js?id=GTM-PG98WLVP" async></script>
     <script>
