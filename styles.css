@@ -14,7 +14,7 @@ body {
 /* ----------------------------- */
 
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 50px auto;
   padding: 20px;
   background-color: #fff;
@@ -35,7 +35,7 @@ h1 {
 /* ----------------------------- */
 
 button {
-  border: 5px solid #000000;
+                border: 5px solid #000000;
                 border-radius: 12px;
                 background: #FF0000;
                 color: #FFFFFF;
