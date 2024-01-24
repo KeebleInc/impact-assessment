@@ -27,7 +27,21 @@
               }
             }
           </script>
-          
+                  <style>
+              .myButton {
+                border: 5px solid #20750D;
+                border-radius: 12px;
+                background: #21BC27;
+                color: #CDFFCA;
+                display:inline-block;
+                padding:20px;
+                opacity:1;
+              }
+              .myButton:hover {
+                opacity:0.5;
+              }
+                  </style>
+                
 </head>
 
 <body>
@@ -48,7 +62,7 @@
       <p>Implement Google Tag Manager on your website site. If you do not have a website, create a test page/website using any hosting option you prefer - free sites can be created using <a href="https://pages.github.com/" target="_blank">https://pages.github.com/</a> with a free Github account, or sites such as Zeit or Surge. Load your website with the following query string parameter: <code>?key=hello&value=world</code></p>
       <p>e.g. <code>https://mysite.com?key=hello&value=world</code></p>
       <p>Add functionality to push the key value pair to the GTM data layer. Also, ensure that these values are not hardcoded, allowing testing of other key value pairs.</p>
-      <a href="https://keebleinc.github.io/impact-assessment/?key=hello&value=world">Click Here To Test The Google Tag</a>
+      <a class="myButton" href="https://keebleinc.github.io/impact-assessment/?key=hello&value=world">Click Me To Test The GTM</a>
     </section>
 
     <section>
