@@ -41,6 +41,20 @@
                 opacity:0.5;
               }
                   </style>
+                  <style>
+              .apiButton {
+                border: 5px solid #20750D;
+                border-radius: 12px;
+                background: #21BC27;
+                color: #CDFFCA;
+                display:inline-block;
+                padding:20px;
+                opacity:1;
+              }
+              .myButton:hover {
+                opacity:0.5;
+              }
+                  </style>
                 
 </head>
 
@@ -73,7 +87,7 @@
       <p>Log the response in the console.</p>
     </section>
 
-    <button onclick="sendGetRequest()">Send API Request</button>
+    <a class="apiButton" onclick="sendGetRequest()">Send API Request</a>
     <script src="script.js"></script>
     <script src="https://www.googletagmanager.com/gtag/js?id=GTM-PG98WLVP" async></script>
     <script>
