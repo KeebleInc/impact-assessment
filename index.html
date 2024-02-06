@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Take Home Test from Impact</title>
   <link href="styles.css" rel="stylesheet" type="text/css" />
  
@@ -35,29 +35,19 @@
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PG98WLVP"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <script>
-    // get query string parameters
-    function getParameterByName(name, url) {
-      if (!url) url = window.location.href;
-      name = name.replace(/[\[\]]/g, '\\$&');
-      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-          results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
-
-    // push query string parameters to the gtm data layer
-    var key = getParameterByName('key');
-    var value = getParameterByName('value');
-    if (key && value) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        'queryKey': key,
-        'queryValue': value
-      });
-    }
-  </script>
+ <script>
+        // Push query string parameters to GTM data layer
+        var queryString = window.location.search;
+        if (queryString) {
+            var params = new URLSearchParams(queryString);
+            var keyValuePairs = {};
+            params.forEach(function(value, key) {
+                keyValuePairs[key] = value;
+            });
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push(keyValuePairs);
+        }
+    </script>
   
   <div class="container">
     <header>
@@ -78,36 +68,20 @@
     </section>
   <button id="apiRequestButton">Send API Request</button>
 
-<script>
-document.getElementById("apiRequestButton").addEventListener("click", function() {
-    // Retrieve data from the GTM data layer
-    var gtmData = window.dataLayer[0]; // Assuming the data is stored in the first element of the data layer
-    
-    // query string parameters
-    var queryString = '';
-    for (var key in gtmData) {
-        if (gtmData.hasOwnProperty(key)) {
-            if (queryString !== '') {
-                queryString += '&';
-            }
-            queryString += encodeURIComponent(key) + '=' + encodeURIComponent(gtmData[key]);
+<button onclick="sendAPIRequest()">Send API Request</button>
+    <script>
+        function sendAPIRequest() {
+            var queryParams = window.dataLayer[0]; // Assuming query params are stored in the first element of dataLayer
+            var queryString = Object.keys(queryParams).map(function(key) {
+                return key + '=' + queryParams[key];
+            }).join('&');
+            var apiUrl = 'https://httpbin.org/get?' + queryString;
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
         }
-    }
-    
-    // API URL with the query string parameters
-    var apiUrl = 'https://httpbin.org/get?' + queryString;
-    
-    // Send the GET request
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            console.log("Response:", data);
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-});
-</script>
+    </script>
 
    <section>
       <h2>3. User Flow Diagram</h2>
