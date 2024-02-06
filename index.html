@@ -36,7 +36,7 @@
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <script>
-    // Function to get query string parameters
+    // get query string parameters
     function getParameterByName(name, url) {
       if (!url) url = window.location.href;
       name = name.replace(/[\[\]]/g, '\\$&');
@@ -47,7 +47,7 @@
       return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
 
-    // Push query string parameters to the data layer
+    // push query string parameters to the gtm data layer
     var key = getParameterByName('key');
     var value = getParameterByName('value');
     if (key && value) {
@@ -83,7 +83,7 @@ document.getElementById("apiRequestButton").addEventListener("click", function()
     // Retrieve data from the GTM data layer
     var gtmData = window.dataLayer[0]; // Assuming the data is stored in the first element of the data layer
     
-    // Construct the query string parameters
+    // query string parameters
     var queryString = '';
     for (var key in gtmData) {
         if (gtmData.hasOwnProperty(key)) {
@@ -94,7 +94,7 @@ document.getElementById("apiRequestButton").addEventListener("click", function()
         }
     }
     
-    // Construct the API URL with the query string parameters
+    // API URL with the query string parameters
     var apiUrl = 'https://httpbin.org/get?' + queryString;
     
     // Send the GET request
